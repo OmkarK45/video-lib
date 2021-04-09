@@ -19,10 +19,10 @@ module.exports = {
     },
     sourceType: "module",
   },
-  plugins: ["babel", "react", "import", "prettier","react-hooks"],
+  plugins: ["babel", "react", "import","react-hooks"],
   rules: {
     "import/no-duplicates": "error",
-    "import/no-unresolved": "error",
+    "import/no-unresolved": "off",
     "import/named": "error",
     "react/no-typos": "error",
     "react/no-unused-state": "error",
@@ -35,6 +35,7 @@ module.exports = {
     "consistent-return": "error",
     "babel/no-invalid-this": "error",
     "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    "react/prop-types": "off"
   },
   settings: {
     react: {
