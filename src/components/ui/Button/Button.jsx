@@ -22,6 +22,11 @@ const SIZES = {
 	md: 'px-3 py-2  text-sm leading-4',
 	lg: 'px-4 py-2 text-sm  rounded-md',
 }
+const ICON_SIZES = {
+	sm: '-ml-0.5 mr-2 h-4 w-4',
+	md: '-ml-1 mr-2 h-5 w-5',
+	lg: '-ml-1 mr-2 h-5 w-5',
+}
 export function Button({
 	className,
 	variant = 'default',
@@ -35,6 +40,7 @@ export function Button({
 }) {
 	const variantStyles = VARIANTS[variant] || VARIANTS.default
 	const sizeStyles = SIZES[size] || SIZES.sm
+	const Icon = icon ? icon : null
 	return (
 		<button
 			type="button"
@@ -45,12 +51,16 @@ export function Button({
 				props?.disabled && 'cursor-default',
 				props?.disabled ? variantStyles.disabled : variantStyles.active,
 				fullWidth && 'w-full text-center justify-center',
-				isLoading && 'opacity-70',
+				isLoading && 'opacity-70 cursor-wait',
 				className,
 			)}
 			{...props}
 		>
-			{icon && !isLoading && <span className="items-center mr-2">{icon}</span>}
+			{icon && !isLoading && (
+				<span className="items-center">
+					<Icon className={ICON_SIZES[size]} />
+				</span>
+			)}
 
 			{isLoading && <Spinner className="text-lg" />}
 
