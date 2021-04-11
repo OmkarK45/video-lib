@@ -35,7 +35,8 @@ module.exports = {
     "consistent-return": "error",
     "babel/no-invalid-this": "error",
     "no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
-    "react/prop-types": "off"
+    "react/prop-types": "off",
+    "react/no-unescaped-entities":"off"
   },
   settings: {
     react: {
