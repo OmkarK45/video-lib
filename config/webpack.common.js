@@ -65,9 +65,10 @@ module.exports = {
 			{ test: /\.(js|jsx)$/, exclude: /node_modules/, use: ['babel-loader'] },
 
 			// Styles: Inject CSS into the head with source maps
+			// Note from OK -> nuked minicssextact fro dev.. instead use style-loader
 			{
 				test: /\.(css)$/,
-				use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+				use: ['style-loader', 'css-loader', 'postcss-loader'],
 			},
 
 			{

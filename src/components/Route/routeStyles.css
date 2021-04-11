@@ -1,0 +1,5 @@
+#nprogress .bar {
+	background: #f43f5e;
+	height: 3px;
+	z-index: 99999;
+}

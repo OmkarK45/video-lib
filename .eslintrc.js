@@ -25,7 +25,7 @@ module.exports = {
     "import/no-unresolved": "off",
     "import/named": "error",
     "react/no-typos": "error",
-    "react/no-unused-state": "error",
+    "react/no-unused-state": "off",
     "react/jsx-no-bind": "off",
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
     "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies

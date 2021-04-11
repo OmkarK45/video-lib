@@ -1,5 +1,8 @@
 import { Transition } from '@headlessui/react'
+import UserInfo from 'components/User/UserInfo'
 import { HiOutlineX } from 'react-icons/hi'
+import { NavLink } from 'react-router-dom'
+import { links } from './../../common/links'
 
 export function MobileMenu({ mobileOpen, setMobileOpen }) {
 	return (
@@ -50,31 +53,30 @@ export function MobileMenu({ mobileOpen, setMobileOpen }) {
 					<div className="flex-1 pt-5 pb-4 overflow-y-auto">
 						<div className="flex items-center flex-shrink-0 px-4">
 							<img
-								className="w-auto h-8"
-								src="https://tailwindui.com/img/logos/workflow-logo-rose-500-mark-white-text.svg"
+								className="w-auto h-8 "
+								src="../../assets/icons/logo.svg"
 								alt="Workflow"
 							/>
 						</div>
 						<nav className="px-2 mt-5 space-y-1">
-							{/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-							<a
-								href="/"
-								className="flex items-center px-2 py-2 text-base font-medium text-white bg-gray-800 rounded-md group"
-							>
-								{/* Current: "text-gray-300", Default: "text-gray-400 group-hover:text-gray-300" */}
-								{/* Icon classes -> w-6 h-6 mr-4 text-gray-300 */}
-								Dashboard
-							</a>
-
-							<a
-								href="/"
-								className="flex items-center px-2 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white group"
-							>
-								Team
-							</a>
+							{links.map((link) => {
+								const Icon = link.icon
+								return (
+									<NavLink
+										exact
+										to={link.to}
+										activeClassName="bg-gray-800 text-white"
+										className="flex items-center px-2 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white group"
+										key={link.label}
+									>
+										<Icon className="w-6 h-6 mr-4 text-gray-300" /> {link.label}
+									</NavLink>
+								)
+							})}
 						</nav>
 					</div>
 				</div>
+				<UserInfo />
 			</Transition.Child>
 			<div className="flex-shrink-0 w-14"></div>
 		</Transition>
