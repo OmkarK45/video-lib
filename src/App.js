@@ -1,7 +1,8 @@
 import { Header, Main, Sidebar } from 'components/Layout'
 import FancyRoute from 'components/Route/FancyRoute'
-import { Marketing, Video } from 'pages'
+import { Marketing, Home } from 'pages'
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
+import VideoPage from './pages/VideoPage'
 
 export default function App() {
 	return (
@@ -13,9 +14,9 @@ export default function App() {
 						<div className="flex flex-col flex-1 w-0 overflow-hidden">
 							<Header />
 							<Main>
-								<FancyRoute path="/" exact component={Video} />
+								<FancyRoute path="/" exact component={Home} />
 								<FancyRoute path="/marketing" exact component={Marketing} />
-								<FancyRoute path="/watch/:id" exact component={Video} />
+								<FancyRoute path="/watch/:id" exact component={VideoPage} />
 							</Main>
 						</div>
 					</div>

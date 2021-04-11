@@ -1,3 +1,9 @@
+import { VideoGrid } from 'components/Video/VideoGrid'
+
 export default function Home() {
-	return <div>im home page</div>
+	return (
+		<div>
+			<VideoGrid />
+		</div>
+	)
 }

@@ -16,6 +16,7 @@
   "description": "Video Lib",
   "dependencies": {
     "@headlessui/react": "^0.3.2-d950146",
+    "@tailwindcss/aspect-ratio": "^0.2.0",
     "@tailwindcss/line-clamp": "^0.2.0",
     "clsx": "^1.1.1",
     "nprogress": "^0.2.0",
