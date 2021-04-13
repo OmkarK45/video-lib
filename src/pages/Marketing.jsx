@@ -1,7 +1,33 @@
+import MarketingBanner from 'components/Marketing/MarketingBanner'
+import MarketingHeader from 'components/Marketing/MarketingHeader'
+import { Button } from 'components/ui/Button/Button'
+import { useState } from 'react'
+import { VscMute, VscUnmute } from 'react-icons/vsc'
+
 export default function Marketing() {
+	const [mute, setMute] = useState(false)
 	return (
-		<div className="min-h-screen">
-			<video src="../assets/video.mkv"></video>
+		<div className="relative min-h-screen">
+			<div className="absolute inset-0 opacity-90 z-negative lg:opacity-90">
+				<div className="absolute top-0 z-10 w-full py-3 bg-black bg-opacity-60">
+					<MarketingHeader />
+				</div>
+				<div className="absolute z-10 transform -translate-y-1/2 top-1/2 left-5 md:left-10">
+					<MarketingBanner />
+				</div>
+				<video
+					src="https://res.cloudinary.com/video-lib/video/upload/v1618329024/Space_Jam__A_New_Legacy_Trailer_1_480p_24fps_H264-128kbit_AAC_eeau0l.mp4"
+					autoPlay
+					muted={mute}
+					loop
+					className="relative object-cover w-full h-full"
+				></video>
+				<Button
+					className="absolute text-xl bottom-10 right-10"
+					onClick={() => setMute(!mute)}
+					icon={mute ? VscUnmute : VscMute}
+				/>
+			</div>
 		</div>
 	)
 }

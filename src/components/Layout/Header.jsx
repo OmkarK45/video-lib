@@ -2,6 +2,7 @@ import { Button } from 'components/ui/Button/Button'
 import Searchbar from 'components/ui/Searchbar'
 import { useEffect, useState } from 'react'
 import { HiOutlineMenuAlt1 } from 'react-icons/hi'
+import { Link } from 'react-router-dom'
 
 import { MobileMenu } from './MobileMenu'
 
@@ -37,10 +38,14 @@ export function Header() {
 						<Searchbar />
 						<div className="flex-1 hidden pr-5 md:block">
 							<div className="flex items-center justify-end space-x-4">
-								<button className="text-white">Login</button>
-								<Button size="md" variant="dark">
-									Sign up
-								</Button>
+								<Link to="/auth/login">
+									<button className="text-white">Login</button>
+								</Link>
+								<Link to="/auth/register">
+									<Button size="md" variant="dark">
+										Sign up
+									</Button>
+								</Link>
 							</div>
 						</div>
 					</div>
