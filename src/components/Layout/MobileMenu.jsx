@@ -1,7 +1,7 @@
 import { Transition } from '@headlessui/react'
-import UserInfo from 'components/User/UserInfo'
 import { HiOutlineX } from 'react-icons/hi'
 import { NavLink } from 'react-router-dom'
+
 import { links } from './../../common/links'
 
 export function MobileMenu({ mobileOpen, setMobileOpen }) {
@@ -76,7 +76,6 @@ export function MobileMenu({ mobileOpen, setMobileOpen }) {
 						</nav>
 					</div>
 				</div>
-				<UserInfo />
 			</Transition.Child>
 			<div className="flex-shrink-0 w-14"></div>
 		</Transition>

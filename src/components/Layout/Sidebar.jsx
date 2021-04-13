@@ -1,6 +1,7 @@
-import { links } from './../../common/links'
 import { NavLink } from 'react-router-dom'
-import UserInfo from 'components/User/UserInfo'
+
+import { links } from './../../common/links'
+
 export function Sidebar() {
 	return (
 		<div className="flex h-screen ">
@@ -33,7 +34,6 @@ export function Sidebar() {
 								})}
 							</nav>
 						</div>
-						<UserInfo />
 					</div>
 				</div>
 			</div>

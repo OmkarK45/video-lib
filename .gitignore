@@ -4,3 +4,4 @@ stats.json
 .DS_Store
 # jetbrains
 .idea
+server/node_modules

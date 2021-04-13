@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { Button } from 'components/ui/Button/Button'
 import { HiStar } from 'react-icons/hi'
 
-export default function VideoChannel() {
+export default function VideoChannel({ name, subscribers }) {
 	return (
 		<div className="flex items-center justify-between py-4 border-b-2 border-gray-700">
 			<div className="flex">

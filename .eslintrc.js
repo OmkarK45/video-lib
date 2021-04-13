@@ -4,6 +4,7 @@ module.exports = {
     es6: true,
     node: true,
   },
+  "ignorePatterns": [ "**/server/*"],
   parser: "babel-eslint",
   extends: [
     "eslint:recommended",

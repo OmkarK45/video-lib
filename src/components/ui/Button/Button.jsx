@@ -12,15 +12,19 @@ const VARIANTS = {
 	default: {
 		base: 'border-gray-300',
 		active:
-			'bg-white text-gray-700 focus:border-gray-300 focus:shadow-outline hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
+			'bg-white text-gray-700 focus:border-gray-300 focus:shadow-outline hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500',
 		disabled: 'bg-gray-100',
+	},
+	dark: {
+		base: 'border border-transparent  bg-gray-600 text-white',
+		active: 'hover:bg-gray-700',
 	},
 }
 // these need to be changed
 const SIZES = {
 	sm: 'px-2.5 py-1.5 text-xs',
-	md: 'px-3 py-2  text-sm leading-4',
-	lg: 'px-4 py-2 text-sm  rounded-md',
+	md: 'px-3 py-2  text-base leading-4',
+	lg: 'px-4 py-2 text-base  rounded-md',
 }
 const ICON_SIZES = {
 	sm: '-ml-0.5 mr-2 h-4 w-4',

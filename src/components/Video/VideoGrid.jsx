@@ -5,6 +5,15 @@ export function VideoGrid({ children }) {
 			{children}
 
 			<VideoCard />
+			<VideoCard />
+			<VideoCard />
+			<VideoCard />
+			<VideoCard />
+			<VideoCard />
+			<VideoCard />
+			<VideoCard />
+			<VideoCard />
+			<VideoCard />
 		</div>
 	)
 }
