@@ -1,3 +1,7 @@
 export default function Marketing() {
-	return <div>Im marketing page</div>
+	return (
+		<div className="min-h-screen">
+			<video src="../assets/video.mkv"></video>
+		</div>
+	)
 }

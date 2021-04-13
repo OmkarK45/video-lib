@@ -9,13 +9,13 @@ export default function App() {
 		<>
 			<Router>
 				<Switch>
-					<FancyRoute exact path="/">
+					<FancyRoute exact path="/home">
 						<Layout>
 							<Home />
 						</Layout>
 					</FancyRoute>
 					<FancyRoute exact path="/auth" component={Auth} />
-					<FancyRoute exact path="/marketing" component={Marketing} />
+					<FancyRoute exact path="/" component={Marketing} />
 					<FancyRoute exact path="/watch/:id">
 						<Layout>
 							<VideoPage />

@@ -11,6 +11,11 @@ export default function videoReducer(state, action) {
 				...state,
 				videos: action.payload.videos,
 			}
+		case VIDEO.FETCH_VIDEOS_FAIL:
+			return {
+				...state,
+				error: action.payload.error,
+			}
 		default:
 			return { ...state }
 	}
