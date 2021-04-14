@@ -3,6 +3,7 @@
     "name": "Omkar Kulkarni",
     "url": "https://omkarkulkarni.netlify.app"
   },
+  "proxy" : "http://localhost:5000/",
   "keywords": [
     "react",
     "reactjs",

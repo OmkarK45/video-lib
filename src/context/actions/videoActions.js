@@ -1,14 +1,25 @@
 const { VIDEO } = require('../actionTypes')
 
-/*
-    data is array of videos (objects)
-*/
-export const fetchVideos = (data) => ({
-	type: VIDEO.FETCH_VIDEOS,
-	payload: data,
+// Note to self loading is boolean
+export const fetchingVideos = (loading) => ({
+	type: VIDEO.FETCHING_VIDEOS,
+	payload: {
+		loading,
+	},
 })
 
+// Note to self -> data is array
+export const fetchVideosSuccess = (data) => ({
+	type: VIDEO.FETCH_VIDEOS_SUCCESS,
+	payload: {
+		videos: data,
+	},
+})
+
+// Error is a string
 export const fetchVideosFail = (error) => ({
 	type: VIDEO.FETCH_VIDEOS_FAIL,
-	payload: error,
+	payload: {
+		error,
+	},
 })

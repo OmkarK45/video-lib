@@ -5,8 +5,23 @@ import VideoPage from './pages/VideoPage'
 import Layout from './components/Layout/Layout'
 import Login from 'components/Auth/Login'
 import Register from './components/Auth/Register'
-
+import axios from 'axios'
+import { useVideo } from './context/videoContext'
+import { useEffect } from 'react'
+import { fetchingVideos, fetchVideosFail, fetchVideosSuccess } from './context/actions/videoActions'
 export default function App() {
+	const { state: videoState, dispatch: videoDispatch } = useVideo()
+	useEffect(() => {
+		const fetch = async () => {
+			videoDispatch(fetchingVideos(true))
+			await axios
+				.get('http://localhost:5000/api/videos')
+				.then((res) => videoDispatch(fetchVideosSuccess(res.data)))
+				.catch((error) => videoDispatch(fetchVideosFail(error)))
+		}
+		fetch()
+	}, [videoDispatch])
+	console.log(videoState.videos.data)
 	return (
 		<>
 			<Router>
