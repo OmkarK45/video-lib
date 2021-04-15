@@ -3,7 +3,7 @@
     "name": "Omkar Kulkarni",
     "url": "https://omkarkulkarni.netlify.app"
   },
-  "proxy" : "http://localhost:5000/",
+  "proxy": "http://localhost:5000/",
   "keywords": [
     "react",
     "reactjs",
@@ -21,6 +21,7 @@
     "@tailwindcss/line-clamp": "^0.2.0",
     "axios": "^0.21.1",
     "clsx": "^1.1.1",
+    "date-fns": "^2.20.3",
     "nprogress": "^0.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

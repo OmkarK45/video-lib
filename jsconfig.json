@@ -7,7 +7,9 @@
         "allowSyntheticDefaultImports": false,
         "paths": {
            "components/*" : ["./src/components/*"],
-           "pages/*" : ["./src/pages/*"]
+           "pages/*" : ["./src/pages/*"],
+           "context/*" :["./src/context/*"],
+           "common/*" : ["./src/common"]
         }
     }
 }

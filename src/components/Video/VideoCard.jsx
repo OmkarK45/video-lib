@@ -1,12 +1,16 @@
-export function VideoCard() {
+/* eslint-disable no-unused-vars */
+import { getFormattedViews } from 'common/helpers'
+
+export function VideoCard({ video }) {
+	const { id, title, description, duration, views, likes, dislikes, channel, thumbnail } = video
 	return (
 		<div>
 			<div className="max-w-2xl mx-auto ">
 				<div className="overflow-hidden rounded">
 					<div className="relative overflow-hidden">
-						<img src="https://img.youtube.com/vi/VfNVO6wwgDA/maxresdefault.jpg" />
+						<img src={thumbnail} />
 						<span className="absolute px-1 text-xs text-white bg-black rounded bottom-1 right-2">
-							5:56
+							{duration}
 						</span>
 					</div>
 					<div className="py-4 ">
@@ -20,15 +24,16 @@ export function VideoCard() {
 							</div>
 							<div>
 								<h4 className="text-sm font-medium text-white line-clamp-2">
-									Marvel Studios' Loki - Official Trailer 2 (2021) Tom Hiddleston,
-									Owen Wilson
+									{title}
 								</h4>
 								<div className="flex sm:flex-col">
-									<p className="text-sm text-gray-500">Marvel</p>
+									<p className="text-sm text-gray-500">{channel}</p>
 									<p className="block text-sm text-gray-500 md:hidden">
 										&nbsp;•&nbsp;
 									</p>
-									<p className="text-sm text-gray-500">3M views • 1 day ago</p>
+									<p className="text-sm text-gray-500">
+										{getFormattedViews(views)} views • 1 day ago
+									</p>
 								</div>
 							</div>
 						</div>

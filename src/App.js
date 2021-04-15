@@ -9,6 +9,8 @@ import axios from 'axios'
 import { useVideo } from './context/videoContext'
 import { useEffect } from 'react'
 import { fetchingVideos, fetchVideosFail, fetchVideosSuccess } from './context/actions/videoActions'
+import { useAuth } from 'context/userContext'
+
 export default function App() {
 	const { state: videoState, dispatch: videoDispatch } = useVideo()
 	useEffect(() => {
@@ -21,7 +23,15 @@ export default function App() {
 		}
 		fetch()
 	}, [videoDispatch])
-	console.log(videoState.videos.data)
+	const { user, isAuthenticated } = useAuth()
+	console.log('user present', user)
+	console.log(videoState)
+
+	if (!isAuthenticated) {
+		console.log('loading spinner')
+		return <p className="text-white">Loading....</p>
+	}
+
 	return (
 		<>
 			<Router>
