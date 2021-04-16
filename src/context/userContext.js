@@ -6,7 +6,7 @@ const UserContext = createContext()
 
 export function UserProvider({ children }) {
 	const user = localStorage.getItem('user')
-
+	console.log('from localstorage', JSON.parse(user))
 	const [authState, setAuthState] = useState({
 		user: user ? JSON.parse(user) : {},
 		isAuthenticated: false,
@@ -26,7 +26,6 @@ export function UserProvider({ children }) {
 		localStorage.removeItem('expiresAt')
 		setAuthState({})
 	}
-
 	useEffect(() => {
 		const checkLoggedIn = async () => {
 			try {
@@ -53,6 +52,7 @@ export function UserProvider({ children }) {
 		}
 		checkLoggedIn()
 	}, [])
+
 	return (
 		<UserContext.Provider
 			value={{

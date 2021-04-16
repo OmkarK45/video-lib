@@ -23,11 +23,14 @@ export function VideoCard({ video }) {
 								/>
 							</div>
 							<div>
-								<h4 className="text-sm font-medium text-white line-clamp-2">
-									{title}
-								</h4>
+								<div>
+									<h4 className="text-sm font-medium text-white line-clamp-2">
+										{title}
+									</h4>
+								</div>
 								<div className="flex sm:flex-col">
-									<p className="text-sm text-gray-500 truncate">{channel}</p>
+									<p className="text-sm text-gray-500">{channel}</p>
+
 									<p className="block text-sm text-gray-500 md:hidden">
 										&nbsp;•&nbsp;
 									</p>

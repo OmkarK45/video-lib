@@ -1,8 +1,29 @@
 import { Menu, Transition } from '@headlessui/react'
+import axios from 'axios'
+import { useAuth } from 'context/userContext'
 import { Fragment } from 'react'
 import { HiOutlineLogout } from 'react-icons/hi'
-
+import { toast } from 'react-hot-toast'
 export default function UserMenu() {
+	const { logout } = useAuth()
+	async function handleLogout() {
+		try {
+			await axios
+				.post('http://localhost:5000/api/auth/logout', {}, { withCredentials: true })
+				.then((res) => {
+					console.log('destroyed localstorage', res)
+					toast.success('Logged out!')
+					logout()
+				})
+				.catch((err) => {
+					toast.error('There was some error logging you out')
+					console.log(err)
+				})
+		} catch (error) {
+			console.log(error)
+			toast.error('There was some error logging you out')
+		}
+	}
 	return (
 		<div className=" justify-self-end">
 			<Menu as="div" className="relative inline-block text-left">
@@ -33,6 +54,7 @@ export default function UserMenu() {
 									<Menu.Item>
 										{({ active }) => (
 											<button
+												onClick={handleLogout}
 												className={`${
 													active
 														? 'bg-gray-500 text-white'
