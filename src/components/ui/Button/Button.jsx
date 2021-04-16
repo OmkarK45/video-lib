@@ -27,9 +27,9 @@ const SIZES = {
 	lg: 'px-4 py-2 text-base  rounded-md',
 }
 const ICON_SIZES = {
-	sm: '-ml-0.5 mr-2 h-4 w-4',
-	md: '-ml-1 mr-2 h-5 w-5',
-	lg: '-ml-1 mr-2 h-5 w-5',
+	sm: '-ml-0.5 h-4 w-4',
+	md: '-ml-1  h-5 w-5',
+	lg: '-ml-1  h-5 w-5',
 }
 export function Button({
 	className,
@@ -69,8 +69,8 @@ export function Button({
 			{isLoading && <Spinner className="text-lg" />}
 
 			{isLoading
-				? <p className="ml-2">{loadingText}</p> || (
-						<span className="ml-2 opacity- 0">{children}</span>
+				? <p className={clsx(loadingText && 'ml-2')}>{loadingText}</p> || (
+						<span className="ml-2 opacity-0">{children}</span>
 				  )
 				: children}
 		</button>

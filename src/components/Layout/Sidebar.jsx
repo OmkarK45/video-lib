@@ -7,9 +7,8 @@ export function Sidebar() {
 		<div className="flex h-screen ">
 			<div className="hidden lg:flex lg:flex-shrink-0">
 				<div className="flex flex-col w-64">
-					{/* Sidebar component, swap this element with another sidebar if you like */}
-					<div className="flex flex-col flex-1 h-0 bg-gray-800">
-						<div className="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto">
+					<div className="flex flex-col flex-1 h-0 bg-[#222222]">
+						<div className="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto ">
 							<div className="flex items-center flex-shrink-0 px-4 ">
 								<img
 									className="w-auto h-8 "
@@ -17,7 +16,7 @@ export function Sidebar() {
 									alt="Workflow"
 								/>
 							</div>
-							<nav className="flex-1 px-2 mt-5 space-y-1 bg-gray-800">
+							<nav className="flex-1 px-2 mt-5 space-y-1">
 								{links.map((link) => {
 									const Icon = link.icon
 									return (

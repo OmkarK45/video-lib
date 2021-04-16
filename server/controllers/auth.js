@@ -37,7 +37,7 @@ exports.register = async (req, res, next) => {
 	})
 
 	if (isAlreadyRegisterd) {
-		return res.status(400).json({
+		return res.status(409).json({
 			success: false,
 			msg: 'User already registered',
 			code: 'ALREADY_REGISTERED',
@@ -83,9 +83,9 @@ exports.login = async (req, res, next) => {
 		const user = await User.findOne({ email })
 
 		if (!user) {
-			return res.staus(404).json({
+			return res.status(404).json({
 				success: false,
-				msg: 'No user with that email was found',
+				msg: 'No account with given credentials.',
 				code: 'USER_NOT_FOUND',
 			})
 		}
@@ -94,13 +94,14 @@ exports.login = async (req, res, next) => {
 		if (!passwordsMatch) {
 			return res.status(401).json({
 				success: false,
-				msg: 'Incorrect Credentials',
+				msg: 'Incorrect credentials',
 				code: 'INVALID_CREDS',
 			})
 		}
 
 		sendCookie(user, 200, 'Logged in successfully!', 'LOGIN_SUCCESS', res)
 	} catch (error) {
+		console.log(error)
 		res.status(500).json({
 			success: false,
 			msg: error,
@@ -139,6 +140,7 @@ const sendCookie = async (user, statusCode, msg = null, code = null, res) => {
 			expiresIn: process.env.JWT_EXPIRY_TIME,
 		},
 	)
+	console.log(token)
 	res.cookie('token', token, {
 		httpOnly: true,
 		maxAge: 7 * 24 * 3600 * 1000,
@@ -152,5 +154,7 @@ const sendCookie = async (user, statusCode, msg = null, code = null, res) => {
 			username: user.username,
 			email: user.email,
 		},
+		expiresIn: new Date().valueOf() + 7 * 24 * 3600 * 1000,
+		token,
 	})
 }

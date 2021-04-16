@@ -10,7 +10,7 @@ export default function Marketing() {
 	return (
 		<div className="relative min-h-screen overflow-visible md:overflow-hidden">
 			<div className="absolute inset-0 opacity-90 z-negative lg:opacity-90">
-				<div className="absolute top-0 z-10 w-full py-3 bg-black bg-opacity-60">
+				<div className="absolute top-0 z-10 w-full py-3 bg-black backdrop-filter backdrop-blur-md bg-opacity-60">
 					<MarketingHeader />
 				</div>
 				<div className="absolute z-10 transform -translate-y-1/2 top-72 left-5 md:left-10">

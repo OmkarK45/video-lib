@@ -5,41 +5,28 @@ import { createContext, useContext, useEffect, useState } from 'react'
 const UserContext = createContext()
 
 export function UserProvider({ children }) {
-	const token = localStorage.getItem('token')
-	const expiresAt = localStorage.getItem('expiresAt')
 	const user = localStorage.getItem('user')
+
 	const [authState, setAuthState] = useState({
-		token,
-		expiresAt,
 		user: user ? JSON.parse(user) : {},
+		isAuthenticated: false,
 	})
 
-	function setAuth({ token, user, expiresAt }) {
-		localStorage.setItem('token', token)
+	function setAuth({ user }) {
 		localStorage.setItem('user', JSON.stringify(user))
-		localStorage.setItem('expiresAt', expiresAt)
 
 		setAuthState({
-			token,
 			user,
-			expiresAt,
+			isAuthenticated: user && user.userID ? true : false,
 		})
 	}
 
 	function logout() {
 		localStorage.removeItem('user')
 		localStorage.removeItem('expiresAt')
-		localStorage.removeItem('token')
 		setAuthState({})
 	}
-	function isAuthenticated() {
-		const { token, expiresAt } = authState
-		if (!token || !expiresAt) {
-			return false
-		}
-		const hasExpired = new Date().getTime() / 1000 < expiresAt
-		return hasExpired
-	}
+
 	useEffect(() => {
 		const checkLoggedIn = async () => {
 			try {
@@ -47,17 +34,19 @@ export function UserProvider({ children }) {
 					.get('http://localhost:5000/api/auth/user', {
 						withCredentials: true,
 					})
-					.then((res) =>
+					.then((res) => {
+						console.log('axios fired')
 						setAuthState({
 							user: res.data.user,
 							isAuthenticated: true,
-						}).catch((error) => {
-							setAuthState({
-								user: {},
-								isAuthenticated: false,
-							})
-						}),
-					)
+						})
+					})
+					.catch((error) => {
+						setAuthState({
+							user: {},
+							isAuthenticated: false,
+						})
+					})
 			} catch (error) {
 				console.log(error)
 			}
@@ -70,7 +59,6 @@ export function UserProvider({ children }) {
 				authState,
 				setAuthState: (authInfo) => setAuth(authInfo),
 				logout,
-				isAuthenticated,
 			}}
 		>
 			{children}

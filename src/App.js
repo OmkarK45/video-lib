@@ -10,7 +10,7 @@ import { useVideo } from './context/videoContext'
 import { useEffect } from 'react'
 import { fetchingVideos, fetchVideosFail, fetchVideosSuccess } from './context/actions/videoActions'
 import { useAuth } from 'context/userContext'
-
+import { Toaster } from 'react-hot-toast'
 export default function App() {
 	const { state: videoState, dispatch: videoDispatch } = useVideo()
 	useEffect(() => {
@@ -23,17 +23,26 @@ export default function App() {
 		}
 		fetch()
 	}, [videoDispatch])
-	const { user, isAuthenticated } = useAuth()
-	console.log('user present', user)
+	const { authState } = useAuth()
+	console.log('user present', authState.user)
 	console.log(videoState)
 
-	if (!isAuthenticated) {
-		console.log('loading spinner')
-		return <p className="text-white">Loading....</p>
-	}
+	console.log('isAuthenticated', authState.isAuthenticated)
 
 	return (
 		<>
+			<Toaster
+				position="bottom-right"
+				reverseOrder={false}
+				toastOptions={{
+					className: 'bg-gray-800 text-white',
+					success: {
+						iconTheme: {
+							primary: '#059669',
+						},
+					},
+				}}
+			/>
 			<Router>
 				<Switch>
 					<FancyRoute exact path="/home">

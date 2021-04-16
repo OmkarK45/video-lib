@@ -27,7 +27,7 @@ export function VideoCard({ video }) {
 									{title}
 								</h4>
 								<div className="flex sm:flex-col">
-									<p className="text-sm text-gray-500">{channel}</p>
+									<p className="text-sm text-gray-500 truncate">{channel}</p>
 									<p className="block text-sm text-gray-500 md:hidden">
 										&nbsp;•&nbsp;
 									</p>
