@@ -17,6 +17,7 @@ app.use(cors(corsOptions))
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+
 /*
   All auth routes are prefixed with /api/auth
   However you can replace this with anything as you
@@ -41,8 +42,8 @@ app.get('/secret', checkAuth, (req, res) => {
 })
 
 /*
-    This is a 404 catch all route, for those who are lost
-*/
+ * This is a 404 catch all route, for those who are lost
+ */
 app.use((req, res, next) => {
 	res.status(404).json({
 		msg: 'Requested resource was not found on this server',

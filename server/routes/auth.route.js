@@ -4,6 +4,9 @@ const router = express.Router()
 
 const { register, login, logout, user } = require('../controllers/auth')
 
+/**
+ * All of these are prefixed with /api/auth
+ * */
 router.route('/register').post(register)
 router.route('/login').post(login)
 router.route('/logout').post(logout)
