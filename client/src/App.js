@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 import { fetchingVideos, fetchVideosFail, fetchVideosSuccess } from './context/actions/videoActions'
 import { useAuth } from 'context/userContext'
 import { Toaster } from 'react-hot-toast'
+import Playlist from 'pages/Playlist'
 
 export default function App() {
 	const { state: videoState, dispatch: videoDispatch } = useVideo()
@@ -50,6 +51,11 @@ export default function App() {
 					<FancyRoute exact path="/home">
 						<Layout>
 							<Home />
+						</Layout>
+					</FancyRoute>
+					<FancyRoute exact path="/playlists">
+						<Layout>
+							<Playlist />
 						</Layout>
 					</FancyRoute>
 					<FancyRoute exact path="/auth/login" component={Login} />
