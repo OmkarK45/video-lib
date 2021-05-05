@@ -1,6 +1,9 @@
 import VideoContainer from 'components/Video/VideoContainer'
+import { useParams } from 'react-router'
 
 export default function VideoPage() {
+	const { videoID } = useParams()
+	console.log(videoID)
 	return (
 		<div className="pt-6 mx-auto md:pt-0">
 			<div className="flex flex-wrap">

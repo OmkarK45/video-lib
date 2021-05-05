@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 import { getFormattedViews } from 'common/helpers'
+import { Link } from 'react-router-dom'
 
 export function VideoCard({ video }) {
 	const { id, title, description, duration, views, likes, dislikes, channel, thumbnail } = video
 	return (
-		<div>
+		<Link to="/watch/sfasdf">
 			<div className="max-w-2xl mx-auto ">
 				<div className="overflow-hidden rounded">
 					<div className="relative overflow-hidden">
@@ -43,6 +44,6 @@ export function VideoCard({ video }) {
 					</div>
 				</div>
 			</div>
-		</div>
+		</Link>
 	)
 }

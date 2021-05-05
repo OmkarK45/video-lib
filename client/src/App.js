@@ -55,7 +55,7 @@ export default function App() {
 					<FancyRoute exact path="/auth/login" component={Login} />
 					<FancyRoute exact path="/auth/register" component={Register} />
 					<FancyRoute exact path="/" component={Marketing} />
-					<FancyRoute exact path="/watch/:id">
+					<FancyRoute exact path="/watch/:videoID">
 						<Layout>
 							<VideoPage />
 						</Layout>
