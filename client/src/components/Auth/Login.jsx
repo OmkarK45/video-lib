@@ -7,68 +7,58 @@ import { Link, useHistory } from 'react-router-dom'
 import { Button } from './../ui/Button/Button'
 import AuthContainer from './AuthContainer'
 import { toast } from 'react-hot-toast'
+import * as Yup from 'yup'
+import { useFormik } from 'formik'
+
 export default function Login() {
 	const history = useHistory()
-
-	const [formError, setFormError] = useState({})
 
 	const { setAuthState } = useAuth()
 
 	const [isLoading, setIsLoading] = useState(false)
 
-	const [data, setData] = useState({
-		email: '',
-		password: '',
+	const SignInSchema = Yup.object().shape({
+		email: Yup.string().email('Make sure email is valid.').required('Email is required'),
+		password: Yup.string().min(4).required('Password is required.'),
 	})
 
-	const handleInputChange = (event) => {
-		setData({
-			...data,
-			[event.target.name]: event.target.value,
-		})
-	}
+	const formik = useFormik({
+		initialValues: {
+			email: '',
+			password: '',
+		},
+		validationSchema: SignInSchema,
+		onSubmit: (values) => handleSubmit(values),
+	})
 
-	const handleSubmit = async (e) => {
-		e.preventDefault()
-		if (!data.email) {
-			setFormError({
-				...formError,
-				emailError: 'Email is required',
-			})
-		}
-		if (!data.password) {
-			setFormError({
-				...formError,
-				passwordError: 'Password is required',
-			})
-		}
+	const handleSubmit = async (values) => {
+		const { email, password } = values
 		setIsLoading(true)
 		try {
 			await axios
 				.post(
-					'http://localhost:5000/api/auth/login',
+					process.env.API_URL + `/api/auth/login`,
 					{
-						email: data.email,
-						password: data.password,
+						email,
+						password,
 					},
 					{
 						withCredentials: true,
 					},
 				)
 				.then((res) => {
-					// @TODO-> Show Toast on success
 					setIsLoading(false)
-					toast.success('Logged in!')
-					console.log(res.data)
+					toast.success('Welcome!')
 					setAuthState(res.data)
-					history.push('/')
+					history.push('/home')
 				})
 				.catch((error) => {
-					// @TODO -> Show toast on error
-					console.log(error.response.data.msg)
-					setIsLoading(false)
-					toast.error(error.response.data.msg)
-					setAuthState(null)
+					console.log(error.response.status)
+					if (error.response.status === 404) {
+						toast.error('No account found with these credentials.')
+						setIsLoading(false)
+						setAuthState(null)
+					}
 				})
 		} catch (error) {
 			setIsLoading(false)
@@ -78,7 +68,7 @@ export default function Login() {
 	return (
 		<div className="min-h-screen">
 			<AuthContainer title="Sign in">
-				<form onSubmit={handleSubmit} className="space-y-6">
+				<form onSubmit={formik.handleSubmit} className="space-y-6">
 					<FormInput
 						label="Email Address"
 						id="email"
@@ -87,10 +77,13 @@ export default function Login() {
 						autoComplete="off"
 						required={true}
 						placeholder="you@example.com"
-						onChange={handleInputChange}
-						value={data.email}
-						error={formError.emailError}
+						onChange={formik.handleChange}
+						value={formik.values.email}
+						error={formik.errors.email && formik.errors.email}
+						onBlur={formik.handleBlur}
+						autoFocus
 					/>
+
 					<FormInput
 						id="password"
 						label="Password"
@@ -98,10 +91,12 @@ export default function Login() {
 						type="password"
 						required={true}
 						placeholder="Password"
-						onChange={handleInputChange}
-						value={data.password}
-						error={formError.passwordError}
+						onChange={formik.handleChange}
+						value={formik.values.password}
+						onBlur={formik.handleBlur}
+						error={formik.errors.password && formik.errors.password}
 					/>
+
 					<div>
 						<Button
 							type="submit"

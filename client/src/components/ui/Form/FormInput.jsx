@@ -1,7 +1,11 @@
 import clsx from 'clsx'
 
-export function FormError({ text }) {
-	return <span className="absolute text-sm text-red-500 ">{text}</span>
+export function FormError({ error }) {
+	return (
+		<p className="mt-2 text-sm text-red-600" id="email-error">
+			{error}
+		</p>
+	)
 }
 
 export default function FormInput({
@@ -36,7 +40,7 @@ export default function FormInput({
 					)}
 					{...props}
 				/>
-				{error && <FormError text={error} />}
+				{error && <FormError error={error} />}
 			</div>
 		</div>
 	)

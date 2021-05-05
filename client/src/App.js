@@ -11,7 +11,7 @@ import { useEffect } from 'react'
 import { fetchingVideos, fetchVideosFail, fetchVideosSuccess } from './context/actions/videoActions'
 import { useAuth } from 'context/userContext'
 import { Toaster } from 'react-hot-toast'
-import Foo from './Login'
+
 export default function App() {
 	const { state: videoState, dispatch: videoDispatch } = useVideo()
 	useEffect(() => {
@@ -44,7 +44,7 @@ export default function App() {
 					},
 				}}
 			/>
-			<Foo />
+
 			<Router>
 				<Switch>
 					<FancyRoute exact path="/home">
