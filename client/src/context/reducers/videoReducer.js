@@ -3,6 +3,7 @@ import { VIDEO } from '../actionTypes'
 export const initialState = {
 	videos: [],
 	loading: true,
+	error: '',
 }
 
 export default function videoReducer(state, action) {

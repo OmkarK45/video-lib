@@ -2,7 +2,7 @@ import VideoCardSkeleton from 'components/Placeholder/VideoCardSkeleton'
 import { VideoCard } from './VideoCard'
 import { useVideo } from 'context/videoContext'
 export function VideoGrid() {
-	const { state: videoState } = useVideo()
+	const { videoState } = useVideo()
 	const { loading, videos } = videoState
 	console.log('videos', videoState)
 	return (

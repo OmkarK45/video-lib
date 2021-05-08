@@ -1,8 +1,11 @@
 import PlaylistItem from 'components/Playlist/PlaylistItem'
 import { Button } from 'components/ui/Button/Button'
 import SectionHeader from 'components/ui/SectionHeader'
+import { usePlaylist } from 'context/playlistContext'
 
 export default function Playlist() {
+	const { playlistState } = usePlaylist()
+	console.log(playlistState)
 	return (
 		<div className="relative text-white">
 			<SectionHeader title="Your Playlists" description="Create and manage your playlists.">

@@ -1,3 +1,4 @@
+import { PlaylistProvider } from 'context/playlistContext'
 import { UserProvider } from 'context/userContext'
 import ReactDOM from 'react-dom'
 import App from './App'
@@ -7,7 +8,9 @@ import './index.css'
 ReactDOM.render(
 	<UserProvider>
 		<VideoProvider>
-			<App />
+			<PlaylistProvider>
+				<App />
+			</PlaylistProvider>
 		</VideoProvider>
 	</UserProvider>,
 	document.getElementById('root'),
