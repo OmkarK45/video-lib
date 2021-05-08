@@ -1,8 +1,24 @@
 import { Transition } from '@headlessui/react'
-import { HiOutlineX } from 'react-icons/hi'
+import { HiOutlineHome, HiOutlineX } from 'react-icons/hi'
+import { RiPlayList2Line } from 'react-icons/ri'
 import { NavLink } from 'react-router-dom'
 
 import { links } from './../../common/links'
+import Navbar from './Navbar'
+
+const navigation = [
+	{ name: 'Dashboard', icon: HiOutlineHome, current: true, href: '#' },
+	{
+		name: 'Playlists',
+		icon: RiPlayList2Line,
+
+		children: [
+			{ name: 'New Trailers', href: '#' },
+			{ name: 'Binge Watch', href: '#' },
+			{ name: 'Old is gold', href: '#' },
+		],
+	},
+]
 
 export function MobileMenu({ mobileOpen, setMobileOpen }) {
 	return (
@@ -58,22 +74,7 @@ export function MobileMenu({ mobileOpen, setMobileOpen }) {
 								alt="Workflow"
 							/>
 						</div>
-						<nav className="px-2 mt-5 space-y-1">
-							{links.map((link) => {
-								const Icon = link.icon
-								return (
-									<NavLink
-										exact
-										to={link.to}
-										activeClassName="bg-gray-800 text-white"
-										className="flex items-center px-2 py-2 text-base font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white group"
-										key={link.label}
-									>
-										<Icon className="w-6 h-6 mr-4 text-gray-300" /> {link.label}
-									</NavLink>
-								)
-							})}
-						</nav>
+						<Navbar navigation={navigation} />
 					</div>
 				</div>
 			</Transition.Child>

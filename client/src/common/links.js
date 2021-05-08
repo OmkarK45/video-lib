@@ -7,21 +7,7 @@ export const links = [
 		label: 'Home',
 		icon: HiOutlineHome,
 	},
-	{
-		to: '/library',
-		label: 'Library',
-		icon: HiOutlineFilm,
-	},
-	{
-		to: '/history',
-		label: 'History',
-		icon: MdHistory,
-	},
-	{
-		to: '/liked',
-		label: 'Liked Videos',
-		icon: HiOutlineThumbUp,
-	},
+
 	{
 		to: '/playlist',
 		label: 'Playlist',

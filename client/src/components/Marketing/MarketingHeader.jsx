@@ -7,12 +7,7 @@ export default function MarketingHeader() {
 			<div>
 				<img className="w-auto h-8 " src="../../assets/icons/logo.svg" alt="Workflow" />
 			</div>
-			<div className="hidden md:block">
-				<ul className="flex space-x-2 text-white">
-					<li>Explore</li>
-					<li>Library</li>
-				</ul>
-			</div>
+
 			<div className="flex items-center space-x-5">
 				<Link to="/auth/login">
 					<button className="text-white">Login</button>

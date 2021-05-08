@@ -4,7 +4,7 @@ import Spinner from '../Spinner'
 const VARIANTS = {
 	primary: {
 		base:
-			'border-transparent text-white focus:outline-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500',
+			'border-transparent text-white focus:outline-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-red-500',
 		active:
 			'bg-red-600 hover:bg-red-500 focus:shadow-outline-red focus:border-red-700 active:bg-red-700',
 		disabled: 'bg-yellow-400',
