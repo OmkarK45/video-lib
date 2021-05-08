@@ -12,7 +12,7 @@ const jwt = require('jsonwebtoken')
 exports.user = async (req, res, next) => {
 	const { email } = req.user
 	try {
-		const user = await User.findOne({ email })
+		const user = await User.findOne({ email }, { password: 0 })
 		if (!user) {
 			return res.status(401).json({
 				success: false,
@@ -32,9 +32,12 @@ exports.register = async (req, res, next) => {
 	const { username, email, password } = req.body
 
 	//   Check if already in DB
-	const isAlreadyRegisterd = await User.findOne({
-		$or: [{ email }, { username }],
-	})
+	const isAlreadyRegisterd = await User.findOne(
+		{
+			$or: [{ email }, { username }],
+		},
+		{ password: 0 }
+	)
 
 	if (isAlreadyRegisterd) {
 		return res.status(409).json({
@@ -138,7 +141,7 @@ const sendCookie = async (user, statusCode, msg = null, code = null, res) => {
 		process.env.JWT_SECRET,
 		{
 			expiresIn: process.env.JWT_EXPIRY_TIME,
-		},
+		}
 	)
 	console.log(token)
 	res.cookie('token', token, {

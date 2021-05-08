@@ -70,6 +70,25 @@ exports.createPlaylist = async (req, res) => {
 	})
 }
 
+exports.getUserPlaylists = async (req, res) => {
+	const { _id } = req.user
+	try {
+		const { playlists } = await User.findOne({ _id }, { password: 0 }).populate('playlists')
+
+		res.json({
+			playlists,
+		})
+	} catch (error) {
+		res.status(500).json({
+			msg: 'Something went wrong',
+			error,
+			code: 'ERR_INTERNAL_ERROR',
+		})
+	}
+
+	// console.g(userPlayLists)
+}
+
 exports.addToPlaylist = async (req, res) => {
 	const { videoID, playlistID } = req.body
 
@@ -84,7 +103,7 @@ exports.addToPlaylist = async (req, res) => {
 	try {
 		const foundVideo = await Video.findOne({ videoID })
 
-		const user = await User.findOne({ _id: req.user._id })
+		const user = await User.findOne({ _id: req.user._id }, { password: 0 })
 
 		const playlist = await Playlist.findOne({ playlistID })
 

@@ -1,6 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const { getVideos, getVideo, addToPlaylist, createPlaylist } = require('../controllers/video')
+const {
+	getVideos,
+	getVideo,
+	addToPlaylist,
+	createPlaylist,
+	getUserPlaylists,
+} = require('../controllers/video')
 const { checkAuth } = require('../middlewares/checkAuth')
 
 /**
@@ -15,6 +21,7 @@ router.route('/videos/:videoID').get(getVideo)
 /**
  *  Playlist Routes
  * */
+router.route('/playlists').get(checkAuth, getUserPlaylists)
 router.route('/playlist/add-video').post(checkAuth, addToPlaylist)
 router.route('/playlist/new').post(checkAuth, createPlaylist)
 
