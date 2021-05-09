@@ -45,7 +45,7 @@ export default function Register() {
 		setIsLoading(true)
 
 		await axios
-			.post(process.env.API_URL + `/api/auth/register`, {
+			.post(process.env.REACT_APP_BACKEND + `/api/auth/register`, {
 				username,
 				email,
 				password,

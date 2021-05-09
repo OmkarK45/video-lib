@@ -8,7 +8,7 @@ import Navbar from './Navbar'
 
 // @TODO-> Move this
 const navigation = [
-	{ name: 'Dashboard', icon: HiOutlineHome, current: true, href: '#' },
+	{ name: 'Home', icon: HiOutlineHome, current: true, href: '/home' },
 	{
 		name: 'Playlists',
 		icon: RiPlayList2Line,
@@ -17,6 +17,7 @@ const navigation = [
 			{ name: 'New Trailers', href: '#' },
 			{ name: 'Binge Watch', href: '#' },
 			{ name: 'Old is gold', href: '#' },
+			{ name: 'View All', href: '/playlists' },
 		],
 	},
 ]

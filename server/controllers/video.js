@@ -90,35 +90,49 @@ exports.getUserPlaylists = async (req, res) => {
 }
 
 exports.addToPlaylist = async (req, res) => {
-	const { videoID, playlistID } = req.body
-
-	if (!videoID || !playlistID) {
-		return res.status(400).json({
-			msg: 'Video and Playlist are required.',
-			success: false,
-			code: 'ERR_BAD_REQUEST',
-		})
-	}
+	// Note to self-> playlistIDArray
+	const { videoID, newPlaylistName, userPlaylists } = req.body
 
 	try {
-		const foundVideo = await Video.findOne({ videoID })
+		const foundVideo = await Video.findOne({ id: videoID })
 
 		const user = await User.findOne({ _id: req.user._id }, { password: 0 })
 
-		const playlist = await Playlist.findOne({ playlistID })
+		const playlists = await Playlist.find({
+			_id: {
+				$in: userPlaylists,
+			},
+		})
 
-		playlist.videos.push(foundVideo)
+		playlists.forEach(async (playlist) => {
+			playlist.videos.push(foundVideo._id)
+			await playlist.save()
+		})
 
-		await playlist.save()
+		// await playlists.save()
 
-		await user.save()
+		if (newPlaylistName) {
+			const newPlaylist = new Playlist({
+				playlistName: newPlaylistName,
+				creator: user._id,
+			})
+
+			newPlaylist.videos.push(foundVideo._id)
+
+			await newPlaylist.save()
+		}
+
+		const updatedPlaylists = await Playlist.find({
+			creator: user._id,
+		})
 
 		res.status(200).json({
-			msg: 'Video has been added to playlist.',
-			playlist,
 			success: true,
+			msg: 'Video successfully add to playlist(s)',
+			updatedPlaylists,
 		})
 	} catch (error) {
+		console.log(error)
 		res.status(500).json({
 			msg: 'Something went wrong while saving video in playlist.',
 			error,

@@ -13,7 +13,7 @@ export default function Marketing() {
 				<div className="absolute top-0 z-10 w-full py-3 ">
 					<MarketingHeader />
 				</div>
-				<div className="absolute z-10 transform -translate-y-1/2 border border-white lg:left-36 top-72">
+				<div className="absolute z-10 transform -translate-y-1/2 lg:left-36 top-72">
 					<MarketingBanner />
 				</div>
 				<div className="absolute bottom-0 z-10 w-full transition-transform transform bg-black md:bg-opacity-10 backdrop-filter backdrop-blur-md translate-y-36 md:hover:translate-y-0">

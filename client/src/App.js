@@ -35,13 +35,8 @@ export default function App() {
 				.get(process.env.REACT_APP_BACKEND + '/api/playlists', {
 					withCredentials: true,
 				})
-				.then((res) => {
-					console.log('HERE-> ', res.data.playlists)
-					playlistDispatch(fetchPlaylistsSuccess(res.data.playlists))
-				})
-				.catch((error) => {
-					playlistDispatch(fetchPlaylistsFail(error))
-				})
+				.then((res) => playlistDispatch(fetchPlaylistsSuccess(res.data.playlists)))
+				.catch((error) => playlistDispatch(fetchPlaylistsFail(error)))
 		}
 		getPlaylistData()
 	}, [playlistDispatch])

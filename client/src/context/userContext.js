@@ -30,7 +30,7 @@ export function UserProvider({ children }) {
 		const checkLoggedIn = async () => {
 			try {
 				await axios
-					.get('http://localhost:5000/api/auth/user', {
+					.get(process.env.REACT_APP_BACKEND + '/api/auth/user', {
 						withCredentials: true,
 					})
 					.then((res) => {

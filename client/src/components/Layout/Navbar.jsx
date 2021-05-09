@@ -1,6 +1,6 @@
 import { Disclosure } from '@headlessui/react'
 import clsx from 'clsx'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 export default function Navbar({ navigation }) {
 	return (
@@ -43,13 +43,13 @@ export default function Navbar({ navigation }) {
 								</Disclosure.Button>
 								<Disclosure.Panel className="space-y-1">
 									{item.children.map((subItem) => (
-										<a
+										<Link
 											key={subItem.name}
-											href={subItem.href}
+											to={subItem.href}
 											className="flex items-center w-full py-2 pl-6 pr-2 text-sm font-medium text-gray-300 rounded-md group hover:bg-gray-700 hover:text-gray-100"
 										>
 											{subItem.name}
-										</a>
+										</Link>
 									))}
 								</Disclosure.Panel>
 							</>

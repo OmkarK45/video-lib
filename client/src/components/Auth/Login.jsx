@@ -37,7 +37,7 @@ export default function Login() {
 		try {
 			await axios
 				.post(
-					process.env.API_URL + `/api/auth/login`,
+					process.env.REACT_APP_BACKEND + `/api/auth/login`,
 					{
 						email,
 						password,

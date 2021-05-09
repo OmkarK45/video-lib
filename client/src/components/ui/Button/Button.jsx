@@ -61,7 +61,7 @@ export function Button({
 			{...props}
 		>
 			{icon && !isLoading && (
-				<span className={clsx(children && 'mr-2 ', 'items-center')}>
+				<span className={clsx(children && 'mr-1 ', 'items-center')}>
 					<Icon className={ICON_SIZES[size]} />
 				</span>
 			)}

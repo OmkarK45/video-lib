@@ -1,7 +1,7 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { HiOutlineDotsVertical, HiOutlinePlus } from 'react-icons/hi'
-import MyModal from './../Playlist/CreatePlaylistModal'
+import AddToPlaylist from '../Playlist/AddToPlaylist'
 
 export default function VideoDropdown() {
 	const [modalOpen, setModalOpen] = useState(false)
@@ -52,7 +52,7 @@ export default function VideoDropdown() {
 					</>
 				)}
 			</Menu>
-			<MyModal open={modalOpen} setOpen={setModalOpen} />
+			<AddToPlaylist open={modalOpen} setOpen={setModalOpen} />
 		</div>
 	)
 }
