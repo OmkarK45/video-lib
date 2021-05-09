@@ -1,2 +1,5 @@
 export { default as Home } from './Home'
 export { default as Marketing } from './Marketing'
+export { default as Playlist } from './Playlist'
+export { default as Playlists } from './Playlists'
+export { default as VideoPage } from './VideoPage'

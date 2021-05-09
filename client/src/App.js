@@ -1,7 +1,6 @@
 import FancyRoute from 'components/Route/FancyRoute'
-import { Marketing, Home } from 'pages'
+import { Marketing, Home, VideoPage, Playlists, Playlist } from 'pages'
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
-import VideoPage from './pages/VideoPage'
 import Layout from './components/Layout/Layout'
 import Login from 'components/Auth/Login'
 import Register from './components/Auth/Register'
@@ -10,7 +9,6 @@ import { useVideo } from './context/videoContext'
 import { useEffect } from 'react'
 import { fetchingVideos, fetchVideosFail, fetchVideosSuccess } from './context/actions/videoActions'
 import { Toaster } from 'react-hot-toast'
-import Playlist from 'pages/Playlist'
 import { usePlaylist } from 'context/playlistContext'
 import { fetchPlaylistsFail, fetchPlaylistsSuccess } from 'context/actions/playlistActions'
 
@@ -64,6 +62,11 @@ export default function App() {
 						</Layout>
 					</FancyRoute>
 					<FancyRoute exact path="/playlists">
+						<Layout>
+							<Playlists />
+						</Layout>
+					</FancyRoute>
+					<FancyRoute exact path="/playlists/:playlistID">
 						<Layout>
 							<Playlist />
 						</Layout>
