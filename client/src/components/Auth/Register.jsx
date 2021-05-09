@@ -5,14 +5,14 @@ import { useAuth } from 'context/userContext'
 import { useFormik } from 'formik'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import * as Yup from 'yup'
 
 import AuthContainer from './AuthContainer'
 
 export default function Register() {
 	const [isLoading, setIsLoading] = useState(false)
-
+	const history = useHistory()
 	const SignUpSchema = Yup.object().shape({
 		username: Yup.string()
 			.min(2, 'Username should be atleast 3 characters long.')
@@ -61,6 +61,7 @@ export default function Register() {
 				console.log(res.message)
 			})
 			.catch((err) => {
+				console.log(err)
 				setIsLoading(false)
 				if (err?.response?.data.code === 'ALREADY_REGISTERED') {
 					toast.error('User with that email is already registered.')

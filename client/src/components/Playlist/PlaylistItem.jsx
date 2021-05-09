@@ -1,7 +1,7 @@
 import { RiPlayList2Line } from 'react-icons/ri'
 import { Link } from 'react-router-dom'
 
-export default function PlaylistItem() {
+export default function PlaylistItem({ imgSrc, videoCount, playlistName }) {
 	return (
 		<div>
 			<div className="relative">

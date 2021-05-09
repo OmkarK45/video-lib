@@ -5,18 +5,7 @@ import { HiOutlineDotsVertical } from 'react-icons/hi'
 import VideoDropdown from './VideoDropdown'
 
 export function VideoCard({ video }) {
-	const {
-		id,
-		title,
-		description,
-		duration,
-		views,
-		likes,
-		dislikes,
-		channel,
-		thumbnail,
-		channel_avatar,
-	} = video
+	const { id, title, duration, views, channel, thumbnail, channel_avatar } = video
 	return (
 		<div className="max-w-2xl mx-auto ">
 			<div className="overflow-hidden rounded">
