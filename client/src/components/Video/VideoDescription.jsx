@@ -33,10 +33,7 @@ export default function VideoDescription({ description }) {
 							leaveTo="transform scale-95 opacity-0"
 						>
 							<Disclosure.Panel static as="dd" className="pr-12 mt-2">
-								<p className="text-base text-gray-500">
-									Lorem ipsum dolor sit amet consectetur adipisicing elit.
-									Voluptatibus, earum.
-								</p>
+								<p className="text-base text-gray-500">{description}</p>
 							</Disclosure.Panel>
 						</Transition>
 					</>

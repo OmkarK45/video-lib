@@ -2,11 +2,22 @@ import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { HiOutlineDotsVertical, HiOutlinePlus } from 'react-icons/hi'
 import AddToPlaylist from '../Playlist/AddToPlaylist'
+import { useAuth } from 'context/userContext'
+import { useHistory } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
-export default function VideoDropdown() {
+export default function VideoDropdown({ id }) {
 	const [modalOpen, setModalOpen] = useState(false)
+	const { authState } = useAuth()
+	const history = useHistory()
+
 	function handleModal() {
-		setModalOpen(true)
+		if (!authState.isAuthenticated) {
+			history.push('/auth/login')
+			toast.error('Please sign in to save videos')
+		} else {
+			setModalOpen(true)
+		}
 	}
 	return (
 		<div>
@@ -52,7 +63,7 @@ export default function VideoDropdown() {
 					</>
 				)}
 			</Menu>
-			<AddToPlaylist open={modalOpen} setOpen={setModalOpen} />
+			<AddToPlaylist open={modalOpen} setOpen={setModalOpen} id={id} />
 		</div>
 	)
 }

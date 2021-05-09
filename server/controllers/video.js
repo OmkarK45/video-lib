@@ -61,6 +61,12 @@ exports.createPlaylist = async (req, res) => {
 		creator: req.user._id,
 	})
 
+	const user = await User.findOne({ _id: req.user._id })
+
+	user.playlists.push(newPlaylist._id)
+	console.log('user playlists', user.playlists)
+
+	await user.save()
 	await newPlaylist.save()
 
 	res.status(200).json({
@@ -73,8 +79,8 @@ exports.createPlaylist = async (req, res) => {
 exports.getUserPlaylists = async (req, res) => {
 	const { _id } = req.user
 	try {
-		const { playlists } = await User.findOne({ _id }, { password: 0 }).populate('playlists')
-
+		const { playlists } = await User.findOne({ _id }).populate('playlists')
+		console.log('User playlists found my mongoose ', playlists)
 		res.json({
 			playlists,
 		})
@@ -91,7 +97,7 @@ exports.getUserPlaylists = async (req, res) => {
 
 exports.addToPlaylist = async (req, res) => {
 	// Note to self-> playlistIDArray
-	const { videoID, newPlaylistName, userPlaylists } = req.body
+	const { videoID, newPlaylistName, selectedPlaylists } = req.body
 
 	try {
 		const foundVideo = await Video.findOne({ id: videoID })
@@ -100,7 +106,7 @@ exports.addToPlaylist = async (req, res) => {
 
 		const playlists = await Playlist.find({
 			_id: {
-				$in: userPlaylists,
+				$in: selectedPlaylists,
 			},
 		})
 
@@ -118,8 +124,9 @@ exports.addToPlaylist = async (req, res) => {
 			})
 
 			newPlaylist.videos.push(foundVideo._id)
-
+			user.playlists.push(newPlaylist._id)
 			await newPlaylist.save()
+			await user.save()
 		}
 
 		const updatedPlaylists = await Playlist.find({
