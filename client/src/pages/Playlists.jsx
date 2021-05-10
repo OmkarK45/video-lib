@@ -20,7 +20,7 @@ export default function Playlists() {
 						return (
 							<PlaylistItem
 								key={playlist._id}
-								imgSrc={firstVideo.thumbnail}
+								imgSrc={firstVideo?.thumbnail || 'http://via.placeholder.com/150'}
 								{...playlist}
 							/>
 						)

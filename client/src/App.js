@@ -66,7 +66,7 @@ export default function App() {
 							<Playlists />
 						</Layout>
 					</FancyRoute>
-					<FancyRoute exact path="/playlists/:playlistID">
+					<FancyRoute exact path="/playlists/:id">
 						<Layout>
 							<Playlist />
 						</Layout>

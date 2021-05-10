@@ -1,6 +1,7 @@
 const Playlist = require('../models/Playlist')
 const User = require('../models/User')
 const Video = require('../models/Video')
+const _ = require('lodash')
 
 exports.getVideos = async (req, res) => {
 	try {
@@ -150,4 +151,20 @@ exports.addToPlaylist = async (req, res) => {
 }
 
 // @TODO -> Remove from playlist
+
+exports.removeFromPlaylist = async (req, res) => {
+	const { videoID, playlistID } = req.body
+
+	await Playlist.findOne({ _id: playlistID }, (error, doc) => {
+		if (error) {
+			return res.json({ msg: 'Something went wrong' })
+		}
+		const newVideos = doc.videos.filter((video) => video != videoID)
+
+		doc.videos = newVideos
+		doc.save()
+		res.json({ msg: 'Video removed from playlist.', success: true, updatedPlaylist: doc })
+	})
+}
+
 // @TODO-> Delete entire playlist
