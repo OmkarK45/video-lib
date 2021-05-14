@@ -1,29 +1,13 @@
 import { Transition } from '@headlessui/react'
-import { HiOutlineHome, HiOutlineX } from 'react-icons/hi'
-import { RiPlayList2Line } from 'react-icons/ri'
-import { NavLink } from 'react-router-dom'
+import { HiOutlineX } from 'react-icons/hi'
+import { Link } from 'react-router-dom'
 
-import { links } from './../../common/links'
+import { navigation } from './../../common/links'
 import Navbar from './Navbar'
-
-const navigation = [
-	{ name: 'Dashboard', icon: HiOutlineHome, current: true, href: '#' },
-	{
-		name: 'Playlists',
-		icon: RiPlayList2Line,
-
-		children: [
-			{ name: 'New Trailers', href: '#' },
-			{ name: 'Binge Watch', href: '#' },
-			{ name: 'Old is gold', href: '#' },
-		],
-	},
-]
 
 export function MobileMenu({ mobileOpen, setMobileOpen }) {
 	return (
 		<Transition show={mobileOpen} unmount={false} className="fixed inset-0 z-40 flex">
-			{/* Off-canvas menu overlay, show/hide based on off-canvas menu state. */}
 			<Transition.Child
 				unmount={false}
 				enter="transition-opacity ease-linear duration-300"
@@ -43,7 +27,6 @@ export function MobileMenu({ mobileOpen, setMobileOpen }) {
 				)}
 			</Transition.Child>
 
-			{/* Off-canvas menu, show/hide based on off-canvas menu state. */}
 			<Transition.Child
 				unmount={false}
 				enter="transition ease-in-out duration-300 transform"
@@ -68,13 +51,15 @@ export function MobileMenu({ mobileOpen, setMobileOpen }) {
 				<div className="flex items-center flex-shrink-0 px-2 bg-gray-900">
 					<div className="flex-1 pt-5 pb-4 overflow-y-auto">
 						<div className="flex items-center flex-shrink-0 px-4">
-							<img
-								className="w-auto h-8 "
-								src="../../assets/icons/logo.svg"
-								alt="Workflow"
-							/>
+							<Link to="/home">
+								<img
+									className="w-auto h-8 "
+									src="../../assets/icons/logo.svg"
+									alt="Workflow"
+								/>
+							</Link>
 						</div>
-						<Navbar navigation={navigation} />
+						<Navbar />
 					</div>
 				</div>
 			</Transition.Child>

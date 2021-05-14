@@ -2,7 +2,11 @@ import axios from 'axios'
 import PlaylistItemRow from 'components/Playlist/PlaylistItemRow'
 import { Button } from 'components/ui/Button/Button'
 import Modal from 'components/ui/Modal'
-import { fetchPlaylistFail, fetchPlaylistSuccess } from 'context/actions/playlistActions'
+import {
+	fetchPlaylistFail,
+	fetchPlaylistsSuccess,
+	fetchPlaylistSuccess,
+} from 'context/actions/playlistActions'
 import { usePlaylist } from 'context/playlistContext'
 import { useAuth } from 'context/userContext'
 import { useVideo } from 'context/videoContext'
@@ -110,7 +114,7 @@ function PlaylistHeader({ playlist }) {
 
 function DeletePlaylistModal({ setOpen, open, id }) {
 	const history = useHistory()
-
+	const { playlistDispatch } = usePlaylist()
 	async function handleDelete() {
 		await axios
 			.put(
@@ -124,14 +128,14 @@ function DeletePlaylistModal({ setOpen, open, id }) {
 			)
 			.then((res) => {
 				closeModal()
-				console.log(res)
-				history.push('/playlists')
+				playlistDispatch(fetchPlaylistsSuccess(res.data.playlists))
+				history.push('/home')
 				toast.success('Playlist deleted !')
 			})
 			.catch((err) => {
 				closeModal()
 				console.log(err)
-				history.push('/playlists')
+				history.push('/home')
 				toast.error('Something went wrong while deleting playlist.')
 			})
 	}
@@ -164,14 +168,20 @@ export default function Playlist() {
 	const { id } = useParams()
 	const playlist = playlistState.playlists.find((p) => p._id === id)
 	const history = useHistory()
+
 	if (!playlist) {
+		console.log('DOES NOT EXISTS')
 		history.push('/playlists')
 		toast.error('Playlist does not exists')
 	}
 
 	return (
 		<div className="container pt-6 mx-auto text-white">
-			{playlistState.loading ? <div>Loading</div> : <PlaylistHeader playlist={playlist} />}
+			{playlistState.loading ? (
+				<div>Loading</div>
+			) : (
+				playlist && <PlaylistHeader playlist={playlist} />
+			)}
 		</div>
 	)
 }

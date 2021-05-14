@@ -26,6 +26,14 @@ export default function PlaylistReducer(state, action) {
 				loading: false,
 				error: action.payload.error,
 			}
+
+		case PLAYLISTS.REMOVE_PLAYLIST:
+			return {
+				...state,
+				loading: false,
+				playlists: action.payload.playlists,
+			}
+
 		case PLAYLIST.FETCHING_PLAYLIST:
 			return {
 				...state,

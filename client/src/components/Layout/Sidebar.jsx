@@ -1,26 +1,5 @@
-import { Link, NavLink } from 'react-router-dom'
-import clsx from 'clsx'
-import { links } from './../../common/links'
-import { Disclosure } from '@headlessui/react'
-import { HiOutlineHome } from 'react-icons/hi'
-import { RiPlayList2Line } from 'react-icons/ri'
+import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
-
-// @TODO-> Move this
-const navigation = [
-	{ name: 'Home', icon: HiOutlineHome, current: true, href: '/home' },
-	{
-		name: 'Playlists',
-		icon: RiPlayList2Line,
-
-		children: [
-			{ name: 'New Trailers', href: '#' },
-			{ name: 'Binge Watch', href: '#' },
-			{ name: 'Old is gold', href: '#' },
-			{ name: 'View All', href: '/playlists' },
-		],
-	},
-]
 
 export function Sidebar() {
 	return (
@@ -39,7 +18,7 @@ export function Sidebar() {
 								</Link>
 							</div>
 
-							<Navbar navigation={navigation} />
+							<Navbar />
 						</div>
 					</div>
 				</div>

@@ -2,6 +2,7 @@ import PlaylistItem from 'components/Playlist/PlaylistItem'
 import SectionHeader from 'components/ui/SectionHeader'
 import { usePlaylist } from 'context/playlistContext'
 import { useVideo } from 'context/videoContext'
+import Empty from './../components/ui/Empty'
 
 export default function Playlists() {
 	const { playlistState } = usePlaylist()
@@ -30,9 +31,7 @@ export default function Playlists() {
 					})
 				) : (
 					<>
-						<div className="text-white">
-							<p>You dont have any playlists</p>
-						</div>
+						<Empty label="playlist" />
 					</>
 				)}
 			</div>

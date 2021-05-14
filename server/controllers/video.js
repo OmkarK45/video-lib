@@ -171,22 +171,35 @@ exports.deletePlaylist = async (req, res) => {
 	const { playlistID } = req.body
 
 	const user = req.user
+	try {
+		await Playlist.deleteOne({
+			_id: playlistID,
+			creator: user._id,
+		})
 
-	await Playlist.deleteOne({
-		_id: playlistID,
-		creator: user._id,
-	})
+		await User.findOne({ _id: user._id }).exec((error, doc) => {
+			if (error) return res.status(500).json({ msg: 'Something went wrong', success: false })
+			const newPlaylists = doc.playlists.filter((playlist) => playlist != playlistID)
 
-	await User.findOne({ _id: user._id }, (error, doc) => {
-		if (error) return res.status(500).json({ msg: 'Something went wrong', success: false })
-		const newPlaylists = doc.playlists.filter((playlist) => playlist != playlistID)
+			doc.playlists = newPlaylists
 
-		doc.playlists = newPlaylists
-		doc.save()
+			doc.save()
+		})
+
+		const { playlists } = await User.findOne(
+			{ _id: user._id },
+			{ email: 0, password: 0, username: 0 }
+		).populate('playlists')
+
 		res.status(200).json({
 			msg: 'Requested playlist was deleted successfully.',
 			success: true,
-			updatedPlaylists: doc.playlists,
+			playlists,
 		})
-	})
+	} catch (error) {
+		console.log(error)
+		res.status(500).json({
+			msg: 'Something went wrong',
+		})
+	}
 }

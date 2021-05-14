@@ -1,16 +1,15 @@
-import { HiOutlineFilm, HiOutlineHome, HiOutlineThumbUp } from 'react-icons/hi'
-import { MdHistory } from 'react-icons/md'
+import { HiOutlineHome } from 'react-icons/hi'
 import { RiPlayList2Line } from 'react-icons/ri'
-export const links = [
-	{
-		to: '/home',
-		label: 'Home',
-		icon: HiOutlineHome,
-	},
 
+export const navigation = [
+	{ name: 'Dashboard', icon: HiOutlineHome, current: true, href: '#' },
 	{
-		to: '/playlist',
-		label: 'Playlist',
+		name: 'Playlists',
 		icon: RiPlayList2Line,
+		children: [
+			{ name: 'New Trailers', href: '#' },
+			{ name: 'Binge Watch', href: '#' },
+			{ name: 'Old is gold', href: '#' },
+		],
 	},
 ]

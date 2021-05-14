@@ -1,8 +1,11 @@
 import { Disclosure } from '@headlessui/react'
 import clsx from 'clsx'
+import { usePlaylist } from 'context/playlistContext'
 import { Link, NavLink } from 'react-router-dom'
+import { navigation } from './../../common/links'
 
-export default function Navbar({ navigation }) {
+export default function Navbar() {
+	const { playlistState } = usePlaylist()
 	return (
 		<nav className="flex-1 px-2 mt-5 space-y-1">
 			{navigation.map((item) =>
@@ -42,15 +45,26 @@ export default function Navbar({ navigation }) {
 									</svg>
 								</Disclosure.Button>
 								<Disclosure.Panel className="space-y-1">
-									{item.children.map((subItem) => (
+									{playlistState.playlists.length > 0 &&
+										playlistState.playlists.map((p, i) => {
+											return (
+												<Link
+													to={`/playlists/${p._id}`}
+													className="flex items-center w-full py-2 pl-6 pr-2 text-sm font-medium text-gray-300 rounded-md group hover:bg-gray-700 hover:text-gray-100"
+													key={i}
+												>
+													{p.playlistName}
+												</Link>
+											)
+										})}
+									<>
 										<Link
-											key={subItem.name}
-											to={subItem.href}
 											className="flex items-center w-full py-2 pl-6 pr-2 text-sm font-medium text-gray-300 rounded-md group hover:bg-gray-700 hover:text-gray-100"
+											to="/playlists"
 										>
-											{subItem.name}
+											View All
 										</Link>
-									))}
+									</>
 								</Disclosure.Panel>
 							</>
 						)}
