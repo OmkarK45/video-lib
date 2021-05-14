@@ -16,9 +16,7 @@ export default function PlaylistItem({ imgSrc, playlistName, videos, _id }) {
 				</div>
 				<div className="mt-2">
 					<p className="font-medium text-white">{playlistName}</p>
-					<Link to="#" className="text-xs text-gray-400 uppercase">
-						View Full Playlist
-					</Link>
+					<p className="text-xs text-gray-400 uppercase">View Full Playlist</p>
 				</div>
 			</div>
 		</Link>

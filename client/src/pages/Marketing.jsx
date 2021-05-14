@@ -29,7 +29,7 @@ export default function Marketing() {
 					autoPlay
 					muted={mute}
 					loop
-					className="relative object-cover w-full h-full"
+					className="relative object-cover w-full h-full bg-opacity-50"
 				></video>
 			</div>
 		</div>

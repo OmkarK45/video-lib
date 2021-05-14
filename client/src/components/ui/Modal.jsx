@@ -42,7 +42,7 @@ export default function Modal({ open, title, closeModal, subtitle = '', children
 						>
 							<div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-gray-800 rounded-md shadow-xl">
 								<h1 className="text-2xl italic font-bold text-white">{title}</h1>
-								<p className="text-gray-500">{subtitle} </p>
+								<p className="mt-2 text-gray-500">{subtitle} </p>
 								{children}
 							</div>
 						</Transition.Child>

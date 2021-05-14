@@ -19,6 +19,7 @@ export default function VideoDropdown({ id }) {
 			setModalOpen(true)
 		}
 	}
+
 	return (
 		<div>
 			<Menu as="div" className="relative inline-block text-left">

@@ -7,6 +7,7 @@ const {
 	createPlaylist,
 	getUserPlaylists,
 	removeFromPlaylist,
+	deletePlaylist,
 } = require('../controllers/video')
 const { checkAuth } = require('../middlewares/checkAuth')
 
@@ -25,6 +26,7 @@ router.route('/videos/:videoID').get(getVideo)
 router.route('/playlists').get(checkAuth, getUserPlaylists)
 router.route('/playlist/add-video').post(checkAuth, addToPlaylist)
 router.route('/playlist/new').post(checkAuth, createPlaylist)
-// @TODO -> remove an playlist itself
 router.route('/playlist/remove-video').patch(checkAuth, removeFromPlaylist)
+router.route('/playlist/delete').put(checkAuth, deletePlaylist)
+
 module.exports = router
