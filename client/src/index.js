@@ -4,14 +4,16 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import { VideoProvider } from './context/videoContext'
 import './index.css'
-
+import { HelmetProvider } from 'react-helmet-async'
 ReactDOM.render(
-	<UserProvider>
-		<VideoProvider>
-			<PlaylistProvider>
-				<App />
-			</PlaylistProvider>
-		</VideoProvider>
-	</UserProvider>,
+	<HelmetProvider>
+		<UserProvider>
+			<VideoProvider>
+				<PlaylistProvider>
+					<App />
+				</PlaylistProvider>
+			</VideoProvider>
+		</UserProvider>
+	</HelmetProvider>,
 	document.getElementById('root'),
 )
