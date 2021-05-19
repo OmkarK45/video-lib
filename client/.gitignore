@@ -7,3 +7,6 @@ stats.json
 server/node_modules
 
 .vercel
+.env.development
+.env.production
+.env.staging
