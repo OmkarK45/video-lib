@@ -75,7 +75,14 @@ function PlaylistHeader({ playlist }) {
 					</h1>
 					<p className="text-base text-gray-500 ">{playlist.videos?.length} Videos</p>
 					<div className="flex">
-						<Button onClick={handleModal} variant="dark" icon={HiOutlineTrash}></Button>
+						<Button
+							onClick={handleModal}
+							fullWidth
+							variant="dark"
+							icon={HiOutlineTrash}
+						>
+							DELETE
+						</Button>
 					</div>
 				</div>
 			</div>

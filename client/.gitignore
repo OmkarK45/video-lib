@@ -5,3 +5,5 @@ stats.json
 # jetbrains
 .idea
 server/node_modules
+
+.vercel
