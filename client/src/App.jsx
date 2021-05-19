@@ -11,6 +11,7 @@ import { fetchingVideos, fetchVideosFail, fetchVideosSuccess } from './context/a
 import { Toaster } from 'react-hot-toast'
 import { usePlaylist } from 'context/playlistContext'
 import { fetchPlaylistsFail, fetchPlaylistsSuccess } from 'context/actions/playlistActions'
+import SEO from 'components/SEO'
 
 export default function App() {
 	const { videoDispatch } = useVideo()
@@ -20,7 +21,7 @@ export default function App() {
 		async function fetch() {
 			videoDispatch(fetchingVideos(true))
 			await axios
-				.get('http://localhost:5000/api/videos')
+				.get(process.env.REACT_APP_BACKEND + '/api/videos')
 				.then((res) => videoDispatch(fetchVideosSuccess(res.data)))
 				.catch((error) => videoDispatch(fetchVideosFail(error)))
 		}
@@ -41,6 +42,7 @@ export default function App() {
 
 	return (
 		<>
+			<SEO title="DogeFlix | The Home of Trailers" />
 			<Toaster
 				position="bottom-right"
 				reverseOrder={false}

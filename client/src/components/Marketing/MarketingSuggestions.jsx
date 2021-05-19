@@ -1,4 +1,5 @@
 import { Button } from 'components/ui/Button/Button'
+import { useVideo } from 'context/videoContext'
 import { useRef } from 'react'
 import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa'
 function MovieCard() {
@@ -24,6 +25,8 @@ export default function MarketingSuggestions() {
 	function scroll(scrollOffset) {
 		movieContainerRef.current.scrollLeft += scrollOffset
 	}
+	const { videoState } = useVideo()
+	console.log(videoState)
 	return (
 		<div>
 			<div className="px-4 py-3 mx-auto text-white max-w-7xl sm:px-6 lg:px-8">

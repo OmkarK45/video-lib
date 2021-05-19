@@ -9,7 +9,11 @@ export default function UserMenu() {
 	async function handleLogout() {
 		try {
 			await axios
-				.post('http://localhost:5000/api/auth/logout', {}, { withCredentials: true })
+				.post(
+					process.env.REACT_APP_BACKEND + '/api/auth/logout',
+					{},
+					{ withCredentials: true },
+				)
 				.then((res) => {
 					console.log('destroyed localstorage', res)
 					toast.success('Logged out!')

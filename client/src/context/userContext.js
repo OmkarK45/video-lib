@@ -9,7 +9,7 @@ export function UserProvider({ children }) {
 	console.log('from localstorage', JSON.parse(user))
 	const [authState, setAuthState] = useState({
 		user: user ? JSON.parse(user) : {},
-		isAuthenticated: false,
+		isAuthenticated: user ? true : false,
 	})
 
 	function setAuth({ user }) {
@@ -32,6 +32,10 @@ export function UserProvider({ children }) {
 				await axios
 					.get(process.env.REACT_APP_BACKEND + '/api/auth/user', {
 						withCredentials: true,
+						headers: {
+							'Access-Control-Allow-Origin': '*',
+							'Content-Type': 'application/json',
+						},
 					})
 					.then((res) => {
 						console.log('axios fired')
@@ -41,6 +45,7 @@ export function UserProvider({ children }) {
 						})
 					})
 					.catch((error) => {
+						console.log('Error Occured', error)
 						setAuthState({
 							user: {},
 							isAuthenticated: false,
