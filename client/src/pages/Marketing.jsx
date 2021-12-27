@@ -13,19 +13,22 @@ export default function Marketing() {
 				<div className="absolute top-0 z-10 w-full py-3 ">
 					<MarketingHeader />
 				</div>
-				<div className="absolute z-10 transform -translate-y-1/2 lg:left-36 top-72">
+				<div className="absolute px-3 md:px-0 flex flex-col z-10 transform -translate-y-1/2 lg:left-36 top-72">
 					<MarketingBanner />
+					<div className="self-end pt-5 mt-4">
+						<Button
+							className="text-xl"
+							onClick={() => setMute(!mute)}
+							icon={mute ? VscUnmute : VscMute}
+						/>
+					</div>
 				</div>
+
 				<div className="absolute bottom-0 z-10 w-full transition-transform transform bg-black md:bg-opacity-10 backdrop-filter backdrop-blur-md translate-y-36 md:hover:translate-y-0">
-					<Button
-						className="absolute text-xl -top-10 right-10"
-						onClick={() => setMute(!mute)}
-						icon={mute ? VscUnmute : VscMute}
-					/>
 					<MarketingSuggestions />
 				</div>
 				<video
-					src="https://res.cloudinary.com/video-lib/video/upload/v1618329024/Space_Jam__A_New_Legacy_Trailer_1_480p_24fps_H264-128kbit_AAC_eeau0l.mp4"
+					src="https://res.cloudinary.com/dogecorp/video/upload/v1640624584/SPIDER-MAN-_NO_WAY_HOME_-_Official_Teaser_Trailer_HD_kzd86l.mp4"
 					autoPlay
 					muted={mute}
 					loop

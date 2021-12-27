@@ -2,20 +2,20 @@ import { Button } from 'components/ui/Button/Button'
 import { useVideo } from 'context/videoContext'
 import { useRef } from 'react'
 import { FaChevronCircleLeft, FaChevronCircleRight } from 'react-icons/fa'
-function MovieCard() {
+import { Link } from 'react-router-dom'
+
+function MovieCard({ title, poster, link }) {
 	return (
-		<div className="inline-block max-w-[250px] mx-auto">
-			<div className="overflow-hidden rounded-lg ">
-				<p className="font-bold text-center text-white">Mr Nobody (2022)</p>
-				<div className="py-3 ">
-					<img
-						src="https://i.ytimg.com/vi/wZti8QKBWPo/maxresdefault.jpg"
-						className="rounded-lg"
-						alt=""
-					/>
+		<Link to={link}>
+			<div className="inline-block max-w-[250px] mx-auto">
+				<div className="overflow-hidden rounded-lg ">
+					<p className="font-bold text-center text-white">{title}</p>
+					<div className="py-3 ">
+						<img src={poster} className="rounded-lg" alt="" />
+					</div>
 				</div>
 			</div>
-		</div>
+		</Link>
 	)
 }
 
@@ -52,17 +52,47 @@ export default function MarketingSuggestions() {
 							className="hidden p-0 transform bg-gray-600 md:block md:absolute -right-5 -translate-y-1/3 top-1/2"
 							icon={FaChevronCircleRight}
 						/>
-
-						<MovieCard />
-						<MovieCard />
-						<MovieCard />
-						<MovieCard />
-						<MovieCard />
-						<MovieCard />
-						<MovieCard />
+						{featuredMovies.map((movie, idx) => {
+							return (
+								<MovieCard
+									key={idx}
+									title={movie.title}
+									poster={movie.poster}
+									link={movie.link}
+								/>
+							)
+						})}
 					</div>
 				</div>
 			</div>
 		</div>
 	)
 }
+
+export const featuredMovies = [
+	{
+		title: 'Spiderman: Homecoming',
+		poster: 'https://img.youtube.com/vi/JfVOs4VSpmA/maxresdefault.jpg',
+		link: '/watch/JfVOs4VSpmA',
+	},
+	{
+		title: 'Thor 4 : Love and War',
+		poster: 'https://img.youtube.com/vi/GczWEacU9uc/maxresdefault.jpg',
+		link: '/watch/GczWEacU9uc',
+	},
+	{
+		title: 'Sonic The Hedgehog 2',
+		poster: 'https://img.youtube.com/vi/G5kzUpWAusI/maxresdefault.jpg',
+		link: '/watch/G5kzUpWAusI',
+	},
+	{
+		title: 'Dr Strange in the multiverse of madness',
+		poster: 'https://img.youtube.com/vi/OhczQxPQYe8/maxresdefault.jpg',
+		link: '/watch/OhczQxPQYe8',
+	},
+	{
+		title: 'Venom : Let there be carnage',
+		poster: 'https://img.youtube.com/vi/-FmWuCgJmxo/maxresdefault.jpg',
+		link: '/watch/-FmWuCgJmxo',
+	},
+]
