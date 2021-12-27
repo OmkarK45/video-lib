@@ -4,16 +4,13 @@ import { useAuth } from 'context/userContext'
 import { Fragment } from 'react'
 import { HiOutlineLogout } from 'react-icons/hi'
 import { toast } from 'react-hot-toast'
+import { REACT_APP_BACKEND } from 'context/uri'
 export default function UserMenu() {
 	const { logout } = useAuth()
 	async function handleLogout() {
 		try {
 			await axios
-				.post(
-					process.env.REACT_APP_BACKEND + '/api/auth/logout',
-					{},
-					{ withCredentials: true },
-				)
+				.post(REACT_APP_BACKEND + '/api/auth/logout', {}, { withCredentials: true })
 				.then((res) => {
 					console.log('destroyed localstorage', res)
 					toast.success('Logged out!')

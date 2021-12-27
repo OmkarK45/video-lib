@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import axios from 'axios'
 import { createContext, useContext, useEffect, useState } from 'react'
+import { REACT_APP_BACKEND } from './uri'
 
 const UserContext = createContext()
 
@@ -30,7 +31,7 @@ export function UserProvider({ children }) {
 		const checkLoggedIn = async () => {
 			try {
 				await axios
-					.get(process.env.REACT_APP_BACKEND + '/api/auth/user', {
+					.get(REACT_APP_BACKEND + '/api/auth/user', {
 						withCredentials: true,
 						headers: {
 							'Access-Control-Allow-Origin': '*',

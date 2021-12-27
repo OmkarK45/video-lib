@@ -8,6 +8,7 @@ import { HiOutlinePlus } from 'react-icons/hi'
 import Modal from '../ui/Modal'
 import { fetchPlaylistsSuccess } from 'context/actions/playlistActions'
 import { fetchPlaylistsFail } from './../../context/actions/playlistActions'
+import { REACT_APP_BACKEND } from 'context/uri'
 
 export default function AddToPlaylist({ setOpen, open, id }) {
 	const [showInput, setShowInput] = useState(false)
@@ -18,7 +19,7 @@ export default function AddToPlaylist({ setOpen, open, id }) {
 
 	async function handleSubmit(values) {
 		await axios
-			.post(process.env.REACT_APP_BACKEND + '/api/playlist/add-video', values, {
+			.post(REACT_APP_BACKEND + '/api/playlist/add-video', values, {
 				withCredentials: true,
 			})
 			.then((res) => {

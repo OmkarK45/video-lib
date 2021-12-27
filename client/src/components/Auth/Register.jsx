@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Button } from 'components/ui/Button/Button'
 import FormInput from 'components/ui/Form/FormInput'
+import { REACT_APP_BACKEND } from 'context/uri'
 import { useAuth } from 'context/userContext'
 import { useFormik } from 'formik'
 import { useState } from 'react'
@@ -45,7 +46,7 @@ export default function Register() {
 		setIsLoading(true)
 
 		await axios
-			.post(process.env.REACT_APP_BACKEND + `/api/auth/register`, {
+			.post(REACT_APP_BACKEND + `/api/auth/register`, {
 				username,
 				email,
 				password,

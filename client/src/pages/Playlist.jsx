@@ -8,6 +8,7 @@ import {
 	fetchPlaylistSuccess,
 } from 'context/actions/playlistActions'
 import { usePlaylist } from 'context/playlistContext'
+import { REACT_APP_BACKEND } from 'context/uri'
 import { useAuth } from 'context/userContext'
 import { useVideo } from 'context/videoContext'
 import { useState } from 'react'
@@ -45,7 +46,7 @@ function PlaylistHeader({ playlist }) {
 	async function handleRemove(video) {
 		await axios
 			.patch(
-				process.env.REACT_APP_BACKEND + '/api/playlist/remove-video',
+				REACT_APP_BACKEND + '/api/playlist/remove-video',
 				{
 					videoID: video._id,
 					playlistID: id,
@@ -125,7 +126,7 @@ function DeletePlaylistModal({ setOpen, open, id }) {
 	async function handleDelete() {
 		await axios
 			.put(
-				process.env.REACT_APP_BACKEND + '/api/playlist/delete',
+				REACT_APP_BACKEND + '/api/playlist/delete',
 				{
 					playlistID: id,
 				},

@@ -9,6 +9,7 @@ import AuthContainer from './AuthContainer'
 import { toast } from 'react-hot-toast'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import { REACT_APP_BACKEND } from 'context/uri'
 
 export default function Login() {
 	const history = useHistory()
@@ -37,7 +38,7 @@ export default function Login() {
 		try {
 			await axios
 				.post(
-					process.env.REACT_APP_BACKEND + `/api/auth/login`,
+					REACT_APP_BACKEND + `/api/auth/login`,
 					{
 						email,
 						password,

@@ -12,6 +12,7 @@ import { Toaster } from 'react-hot-toast'
 import { usePlaylist } from 'context/playlistContext'
 import { fetchPlaylistsFail, fetchPlaylistsSuccess } from 'context/actions/playlistActions'
 import SEO from 'components/SEO'
+import { REACT_APP_BACKEND } from 'context/uri'
 
 export default function App() {
 	const { videoDispatch } = useVideo()
@@ -21,7 +22,7 @@ export default function App() {
 		async function fetch() {
 			videoDispatch(fetchingVideos(true))
 			await axios
-				.get(process.env.REACT_APP_BACKEND + '/api/videos')
+				.get(REACT_APP_BACKEND + '/api/videos')
 				.then((res) => videoDispatch(fetchVideosSuccess(res.data)))
 				.catch((error) => videoDispatch(fetchVideosFail(error)))
 		}
@@ -31,7 +32,7 @@ export default function App() {
 	useEffect(() => {
 		async function getPlaylistData() {
 			await axios
-				.get(process.env.REACT_APP_BACKEND + '/api/playlists', {
+				.get(REACT_APP_BACKEND + '/api/playlists', {
 					withCredentials: true,
 				})
 				.then((res) => playlistDispatch(fetchPlaylistsSuccess(res.data.playlists)))
